@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер цветовых моделей - Лаб. №1</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Конвертер цветовых моделей</h1>
+            <p class="subtitle">Лабораторная работа №1 • Вариант 11: CMYK-RGB-HLS</p>
+        </header>
+
+        <div class="content">
+            <!-- Область предварительного просмотра цвета -->
+            <div class="color-preview-section">
+                <div class="color-preview" id="colorPreview"></div>
+                <div class="color-info">
+                    <h3>Текущий цвет</h3>
+                    <div class="hex-display">
+                        <span id="hexValue">#FFFFFF</span>
+                        <button id="copyHex" class="copy-btn" title="Копировать HEX">📋</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Палитра готовых цветов -->
+            <div class="palette-section">
+                <h3>Быстрый выбор цвета</h3>
+                <div class="color-palette" id="colorPalette"></div>
+            </div>
+
+            <!-- Три цветовые модели -->
+            <div class="models-container">
+                <!-- CMYK Model -->
+                <div class="color-model">
+                    <h2>CMYK</h2>
+                    <p class="model-description">Субтрактивная модель (печать)</p>
+                    
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Cyan (C):</span>
+                            <input type="range" id="cmyk-c" min="0" max="100" value="0" class="slider cyan">
+                            <input type="number" id="cmyk-c-input" min="0" max="100" value="0" class="number-input">
+                            <span class="unit">%</span>
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Magenta (M):</span>
+                            <input type="range" id="cmyk-m" min="0" max="100" value="0" class="slider magenta">
+                            <input type="number" id="cmyk-m-input" min="0" max="100" value="0" class="number-input">
+                            <span class="unit">%</span>
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Yellow (Y):</span>
+                            <input type="range" id="cmyk-y" min="0" max="100" value="0" class="slider yellow">
+                            <input type="number" id="cmyk-y-input" min="0" max="100" value="0" class="number-input">
+                            <span class="unit">%</span>
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Key/Black (K):</span>
+                            <input type="range" id="cmyk-k" min="0" max="100" value="0" class="slider black">
+                            <input type="number" id="cmyk-k-input" min="0" max="100" value="0" class="number-input">
+                            <span class="unit">%</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- RGB Model -->
+                <div class="color-model">
+                    <h2>RGB</h2>
+                    <p class="model-description">Аддитивная модель (экраны)</p>
+                    
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Red (R):</span>
+                            <input type="range" id="rgb-r" min="0" max="255" value="255" class="slider red">
+                            <input type="number" id="rgb-r-input" min="0" max="255" value="255" class="number-input">
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Green (G):</span>
+                            <input type="range" id="rgb-g" min="0" max="255" value="255" class="slider green">
+                            <input type="number" id="rgb-g-input" min="0" max="255" value="255" class="number-input">
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Blue (B):</span>
+                            <input type="range" id="rgb-b" min="0" max="255" value="255" class="slider blue">
+                            <input type="number" id="rgb-b-input" min="0" max="255" value="255" class="number-input">
+                        </label>
+                    </div>
+
+                    <!-- Пипетка для выбора цвета -->
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Выбрать цвет:</span>
+                            <input type="color" id="colorPicker" value="#ffffff" class="color-picker">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- HLS Model -->
+                <div class="color-model">
+                    <h2>HLS</h2>
+                    <p class="model-description">Цилиндрическая модель</p>
+                    
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Hue (H):</span>
+                            <input type="range" id="hls-h" min="0" max="360" value="0" step="1" class="slider hue">
+                            <input type="number" id="hls-h-input" min="0" max="360" value="0" step="1" class="number-input">
+                            <span class="unit">°</span>
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Lightness (L):</span>
+                            <input type="range" id="hls-l" min="0" max="100" value="100" step="0.1" class="slider lightness">
+                            <input type="number" id="hls-l-input" min="0" max="100" value="100" step="0.1" class="number-input">
+                            <span class="unit">%</span>
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <span class="label-text">Saturation (S):</span>
+                            <input type="range" id="hls-s" min="0" max="100" value="0" step="0.1" class="slider saturation">
+                            <input type="number" id="hls-s-input" min="0" max="100" value="0" step="0.1" class="number-input">
+                            <span class="unit">%</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Компьютерная графика • Вариант 11 • 2025</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
